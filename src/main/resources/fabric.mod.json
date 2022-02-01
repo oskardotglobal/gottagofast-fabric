@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "gottagofast",
+  "version": "${version}",
+  "name": "Gotta Go Fast!",
+  "description": "A fabric mod fixing the 'Player moved too quickly!' bug",
+  "authors": [
+    "PixelAgent007"
+  ],
+  "contact": {
+    "repo": "https://github.com/PixelAgent007/gottagofast-fabric"
+  },
+  "license": "GPL-3.0",
+  "icon": "assets/gottagofast/icon.png",
+  "environment": "server",
+  "entrypoints": {
+    "client": [
+      "global.oskar.gottagofast.client.GottagofastClient"
+    ],
+    "main": [
+      "global.oskar.gottagofast.Gottagofast"
+    ]
+  },
+  "mixins": [
+    "gottagofast.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.12.12",
+    "fabric": "*",
+    "minecraft": "1.18.1"
+  }
+}
