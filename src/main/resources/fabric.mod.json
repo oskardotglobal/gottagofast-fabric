@@ -15,10 +15,10 @@
   "environment": "server",
   "entrypoints": {
     "client": [
-      "global.oskar.gottagofast.client.GottagofastClient"
+      "global.oskar.gottagofast.client.GottaGoFastClient"
     ],
     "main": [
-      "global.oskar.gottagofast.Gottagofast"
+      "global.oskar.gottagofast.GottaGoFast"
     ]
   },
   "mixins": [
