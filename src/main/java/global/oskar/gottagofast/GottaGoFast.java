@@ -18,6 +18,7 @@
 
 package global.oskar.gottagofast;
 
+import global.oskar.gottagofast.config.ConfigHandler;
 import net.fabricmc.api.ModInitializer;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -27,6 +28,8 @@ public class GottaGoFast implements ModInitializer {
 
     public static final String MOD_ID = "gottagofast";
     public static final Logger logger = LogManager.getLogger(MOD_ID);
+
+    private final ConfigHandler ch = new ConfigHandler();
 
     @Override
     public void onInitialize() {

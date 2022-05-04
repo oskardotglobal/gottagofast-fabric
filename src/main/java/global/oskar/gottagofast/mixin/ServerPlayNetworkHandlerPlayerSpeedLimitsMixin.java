@@ -23,27 +23,31 @@
 
 package global.oskar.gottagofast.mixin;
 
+import global.oskar.gottagofast.config.ConfigHandler;
 import net.minecraft.server.network.ServerPlayNetworkHandler;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.Constant;
 import org.spongepowered.asm.mixin.injection.ModifyConstant;
 
-@Mixin(ServerPlayNetworkHandler.class)
 
+@Mixin(ServerPlayNetworkHandler.class)
 public final class ServerPlayNetworkHandlerPlayerSpeedLimitsMixin {
+
+    ConfigHandler ch = new ConfigHandler();
+    ConfigHandler.Config config = ch.getConfig();
 
     @ModifyConstant(method = "onPlayerMove", constant = @Constant(floatValue = 100.0F))
     private float getDefaultMaxPlayerSpeed(float speed) {
-        return 1000000.0F;
+        return config.getDefaultMaxPlayerSpeed();
     }
 
     @ModifyConstant(method = "onPlayerMove", constant = @Constant(floatValue = 300.0F))
     private float getMaxPlayerElytraSpeed(float speed) {
-        return 1000000.0F;
+        return config.getMaxPlayerElytraSpeed();
     }
 
     @ModifyConstant(method = "onVehicleMove", constant = @Constant(doubleValue = 100.0))
     private double getMaxPlayerVehicleSpeed(double speed) {
-        return 1000000.0F;
+        return config.getMaxPlayerVehicleSpeed();
     }
 }
