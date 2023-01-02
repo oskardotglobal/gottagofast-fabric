@@ -14,7 +14,7 @@ public class ConfigHandler {
     private final Gson Gson = new GsonBuilder().setPrettyPrinting().create();
     private final File configFile = new File(FabricLoader.getInstance().getConfigDirectory(), "gottagofast.json");
 
-    private final Boolean debug = true;
+    private final Boolean debug = false;
 
     public ConfigHandler() {
         try (FileReader reader = new FileReader(configFile)) {
