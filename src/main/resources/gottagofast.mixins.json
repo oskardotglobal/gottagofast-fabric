@@ -3,12 +3,13 @@
   "minVersion": "0.8",
   "package": "global.oskar.gottagofast.mixin",
   "compatibilityLevel": "JAVA_17",
-  "mixins": [
-    "ServerPlayNetworkHandlerPlayerSpeedLimitsMixin"
-  ],
-  "client": [
+  "server": [
+    "ServerPlayNetworkHandlerOnPlayerMoveMixin"
   ],
   "injectors": {
     "defaultRequire": 1
-  }
+  },
+  "mixins": [
+    "ServerPlayNetworkHandlerOnVehicleMoveMixin"
+  ]
 }
