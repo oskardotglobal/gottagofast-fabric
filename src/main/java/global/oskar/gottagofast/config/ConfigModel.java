@@ -9,4 +9,6 @@ public class ConfigModel {
     public float playerLimit = 100.0F;
     public float playerFallFlyingLimit = 300.0F;
     public float vehicleLimit = 100.0F;
+
+    public double vehicleDistanceLimit = 0.0625;
 }

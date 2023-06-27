@@ -28,6 +28,8 @@ import net.minecraft.entity.Entity;
 import net.minecraft.network.packet.c2s.play.VehicleMoveC2SPacket;
 import net.minecraft.network.packet.s2c.play.VehicleMoveS2CPacket;
 import net.minecraft.server.network.ServerPlayNetworkHandler;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.util.math.MathHelper;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -51,10 +53,11 @@ public final class ServerPlayNetworkHandlerOnVehicleMoveMixin {
             at = @At(
                     value = "INVOKE",
                     target = "Lorg/slf4j/Logger;warn(Ljava/lang/String;[Ljava/lang/Object;)V",
-                    shift = At.Shift.BEFORE
+                    shift = At.Shift.BEFORE,
+                    ordinal = 0
             )
     )
-    private void onVehicleMove(VehicleMoveC2SPacket packet, CallbackInfo ci) {
+    private void onVehicleMoveFixMovedTooQuickly(VehicleMoveC2SPacket packet, CallbackInfo ci) {
         ServerPlayNetworkHandler instance = ((ServerPlayNetworkHandler)(Object)this);
         Entity entity = instance.player.getRootVehicle();
 
@@ -90,5 +93,65 @@ public final class ServerPlayNetworkHandlerOnVehicleMoveMixin {
         }
     }
 
+    @Inject(
+            method = "onVehicleMove(Lnet/minecraft/network/packet/c2s/play/VehicleMoveC2SPacket;)V",
+            cancellable = true,
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lorg/slf4j/Logger;warn(Ljava/lang/String;[Ljava/lang/Object;)V",
+                    shift = At.Shift.BEFORE,
+                    ordinal = 1
+            )
+    )
+    private void onVehicleMoveFixMovedWrongly(VehicleMoveC2SPacket packet, CallbackInfo ci) {
+        ServerPlayNetworkHandler instance = ((ServerPlayNetworkHandler)(Object)this);
+        Entity entity = instance.player.getRootVehicle();
+        ServerWorld serverWorld = instance.player.getServerWorld();
 
+        double threshold = GottaGoFast.CONFIG.vehicleDistanceLimit();
+        boolean isSpaceEmpty = serverWorld.isSpaceEmpty(entity, entity.getBoundingBox().contract(threshold));
+
+        double x = entity.getX();
+        double y = entity.getY();
+        double z = entity.getZ();
+
+        double newX = clampHorizontal(packet.getX());
+        double newY = clampVertical(packet.getY());
+        double newZ = clampHorizontal(packet.getZ());
+
+        float newYaw = MathHelper.wrapDegrees(packet.getYaw());
+        float newPitch = MathHelper.wrapDegrees(packet.getPitch());
+
+        double distanceXFromLastTick = newX - x;
+        double distanceYFromLastTick = newY - y;
+
+        if (distanceYFromLastTick > -0.5 || distanceYFromLastTick < 0.5) distanceYFromLastTick = 0.0;
+
+        double distanceZFromLastTick = newZ - entity.getZ();
+
+        double distance = distanceXFromLastTick * distanceXFromLastTick
+                + distanceYFromLastTick * distanceYFromLastTick
+                + distanceZFromLastTick * distanceZFromLastTick;
+
+        boolean invalidMovement = false;
+
+        if (distance > threshold) {
+            invalidMovement = true;
+
+            GottaGoFast.logger.warn("[GottaGoFast] {} (vehicle of {}) moved wrongly! If you wish to increase the limit to exclude this, increase the limit to {}",
+                    entity.getName().getString(),
+                    instance.player.getName().getString(),
+                    distance
+            );
+        }
+
+        entity.updatePositionAndAngles(newX, newY, newZ, newYaw, newPitch);
+        boolean isSpaceEmptyAfterMovement = serverWorld.isSpaceEmpty(entity, entity.getBoundingBox().contract(threshold));
+
+        if (isSpaceEmpty && (invalidMovement || !isSpaceEmptyAfterMovement)) {
+            entity.updatePositionAndAngles(x, y, z, newYaw, newPitch);
+            instance.connection.send(new VehicleMoveS2CPacket(entity));
+            ci.cancel();
+        }
+    }
 }
