@@ -12,7 +12,7 @@ Modrinth is now the only source of truth for this mod. The project will no longe
 
 ## Warning
 
-Do not leave the default values. Try using values as low as possible, since this might allow players to use speedhacks. The vanilla values are as follows:
+**From v1.1.0 onwards, this mod does nothing by default. The default config values are the vanilla values and as follows:**
 ```
 { 
     "defaultMaxPlayerSpeed": 100.0, 
@@ -20,7 +20,7 @@ Do not leave the default values. Try using values as low as possible, since this
     "maxPlayerVehicleSpeed": 100.0 
 }
 ```
-Increase the values slowly until you don't experience any lag-back anymore.
+Try using values as low as possible, since values too high might allow players to use speedhacks. Increase the values slowly until you don't experience any lag-back anymore.
 
 ## Config
 
