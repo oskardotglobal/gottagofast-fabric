@@ -22,20 +22,9 @@ Modrinth is now the only source of truth for this mod. The project will no longe
 ```
 Try using values as low as possible, since values too high might allow players to use speedhacks. Increase the values slowly until you don't experience any lag-back anymore.
 
-## Config
-
-```
-{ 
-    "defaultMaxPlayerSpeed": 100000.0, 
-    "maxPlayerElytraSpeed": 100000.0, 
-    "maxPlayerVehicleSpeed": 100000.0 
-}
-```
-
-Forge alternative: https://www.curseforge.com/minecraft/mc-mods/too-fast
-
 ## Special thanks
 
 Thanks [RandomPatches](https://www.curseforge.com/minecraft/mc-mods/randompatches-fabric) for the original idea and concept.
+Forge alternative: https://www.curseforge.com/minecraft/mc-mods/too-fast
 
 Thanks to everybody who reports bugs and submits feedback on the github issue tracker.
