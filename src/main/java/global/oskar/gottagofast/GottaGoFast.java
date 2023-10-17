@@ -18,21 +18,21 @@
 
 package global.oskar.gottagofast;
 
-import global.oskar.gottagofast.config.ConfigHandler;
+import global.oskar.gottagofast.config.ModConfig;
 import net.fabricmc.api.ModInitializer;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 public class GottaGoFast implements ModInitializer {
 
     public static final String MOD_ID = "gottagofast";
-    public static final Logger logger = LogManager.getLogger(MOD_ID);
+    public static final Logger logger = LoggerFactory.getLogger(MOD_ID);
+    public static final ModConfig CONFIG = ModConfig.createAndLoad();
 
-    private final ConfigHandler ch = new ConfigHandler();
 
     @Override
     public void onInitialize() {
-        logger.info("GottaGoFast Fabric by PixelAgent007 loaded sucessfully!");
+        logger.info("[GottaGoFast] GottaGoFast Fabric by oskardotglobal loaded sucessfully!");
     }
 }
