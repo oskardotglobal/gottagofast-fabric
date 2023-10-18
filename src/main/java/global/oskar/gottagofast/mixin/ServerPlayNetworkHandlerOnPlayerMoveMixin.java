@@ -26,8 +26,6 @@ package global.oskar.gottagofast.mixin;
 import global.oskar.gottagofast.GottaGoFast;
 import net.minecraft.network.packet.c2s.play.PlayerMoveC2SPacket;
 import net.minecraft.server.network.ServerPlayNetworkHandler;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.GameRules;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;

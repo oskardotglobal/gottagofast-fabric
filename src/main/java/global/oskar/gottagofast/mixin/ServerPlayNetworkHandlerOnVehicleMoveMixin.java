@@ -106,7 +106,7 @@ public final class ServerPlayNetworkHandlerOnVehicleMoveMixin {
     private void onVehicleMoveFixMovedWrongly(VehicleMoveC2SPacket packet, CallbackInfo ci) {
         ServerPlayNetworkHandler instance = ((ServerPlayNetworkHandler)(Object)this);
         Entity entity = instance.player.getRootVehicle();
-        ServerWorld serverWorld = instance.player.getServerWorld();
+        ServerWorld serverWorld = instance.player.getWorld();
 
         double threshold = GottaGoFast.CONFIG.vehicleDistanceLimit();
         boolean isSpaceEmpty = serverWorld.isSpaceEmpty(entity, entity.getBoundingBox().contract(threshold));
