@@ -13,14 +13,28 @@ Modrinth is now the only source of truth for this mod. The project will no longe
 ## Warning
 
 **From v1.1.0 onwards, this mod does nothing by default. The default config values are the vanilla values and as follows:**
-```
-{ 
+```json
+{
+    ...
     "defaultMaxPlayerSpeed": 100.0, 
     "maxPlayerElytraSpeed": 300.0, 
-    "maxPlayerVehicleSpeed": 100.0 
+    "maxPlayerVehicleSpeed": 100.0
+    ...
 }
 ```
 Try using values as low as possible, since values too high might allow players to use speedhacks. Increase the values slowly until you don't experience any lag-back anymore.
+
+## Config
+
+```json
+{
+	"hideConsoleWarnings": false,
+	"playerLimit": 100.0,
+	"playerFallFlyingLimit": 300.0,
+	"vehicleLimit": 100.0,
+	"vehicleDistanceLimit": 0.0625
+}
+```
 
 ## Special thanks
 
