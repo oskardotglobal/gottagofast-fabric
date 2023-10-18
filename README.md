@@ -13,29 +13,32 @@ Modrinth is now the only source of truth for this mod. The project will no longe
 ## Warning
 
 **From v1.1.0 onwards, this mod does nothing by default. The default config values are the vanilla values and as follows:**
-```
-{ 
+```json
+{
+    ...
     "defaultMaxPlayerSpeed": 100.0, 
     "maxPlayerElytraSpeed": 300.0, 
-    "maxPlayerVehicleSpeed": 100.0 
+    "maxPlayerVehicleSpeed": 100.0
+    ...
 }
 ```
 Try using values as low as possible, since values too high might allow players to use speedhacks. Increase the values slowly until you don't experience any lag-back anymore.
 
 ## Config
 
-```
-{ 
-    "defaultMaxPlayerSpeed": 100000.0, 
-    "maxPlayerElytraSpeed": 100000.0, 
-    "maxPlayerVehicleSpeed": 100000.0 
+```json
+{
+	"hideConsoleWarnings": false,
+	"playerLimit": 100.0,
+	"playerFallFlyingLimit": 300.0,
+	"vehicleLimit": 100.0,
+	"vehicleDistanceLimit": 0.0625
 }
 ```
-
-Forge alternative: https://www.curseforge.com/minecraft/mc-mods/too-fast
 
 ## Special thanks
 
 Thanks [RandomPatches](https://www.curseforge.com/minecraft/mc-mods/randompatches-fabric) for the original idea and concept.
+Forge alternative: https://www.curseforge.com/minecraft/mc-mods/too-fast
 
 Thanks to everybody who reports bugs and submits feedback on the github issue tracker.
