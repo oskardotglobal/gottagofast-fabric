@@ -33,6 +33,6 @@ public class GottaGoFast implements ModInitializer {
 
     @Override
     public void onInitialize() {
-        logger.info("[GottaGoFast] GottaGoFast Fabric by oskardotglobal loaded sucessfully!");
+        logger.info("[GottaGoFast] GottaGoFast Fabric by oskardotglobal loaded successfully!");
     }
 }

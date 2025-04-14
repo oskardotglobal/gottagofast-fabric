@@ -1,13 +1,13 @@
 plugins {
-    id 'fabric-loom' version '0.11-SNAPSHOT'
-    id 'maven-publish'
+    id "fabric-loom" version "0.11-SNAPSHOT"
+    id "maven-publish"
 }
 
 version = project.mod_version
 group = project.maven_group
 
 repositories {
-    maven { url 'https://maven.wispforest.io' }
+    maven { url "https://maven.wispforest.io" }
 }
 
 dependencies {
@@ -17,6 +17,10 @@ dependencies {
 
     // owo-lib
     annotationProcessor modImplementation("io.wispforest:owo-lib:${project.owo_version}")
+
+    // mixinextras
+    annotationProcessor modImplementation("io.github.llamalad7:mixinextras-fabric:${project.mixinextras_version}")
+    include("io.github.llamalad7:mixinextras-fabric:${project.mixinextras_version}:slim")
 }
 
 loom {
